@@ -1,19 +1,26 @@
-var express    = require('express')
-var app        = express()
-var bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+
+mongoose.Promise = global.Promise
+if (process.env.NODE_ENV == 'production') {
+    mongoose.connect('mongodb://heroku_f25qf82d:mj1vprbkmv5le6ekg1emnmvglh@ds351628.mlab.com:51628/heroku_f25qf82d')
+} else {
+    mongoose.connect('mongodb://localhost:27017/TodoApiAkic')
+}
+mongoose.connection.on('error', function(err) {
+    console.error('MongoDB connection error: ' + err)
+    process.exit(-1)
+})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-var port = process.env.PORT || 3001
+const port = process.env.PORT || 3001
 
-
-app.get('/api/v1/',function(req,res){
-    res.json({
-        message:"Hello,world"
-    })
-})
-
+const router = require('./models/routes/v1/')
+app.use('/api/v1/', router)
 
 app.listen(port)
 console.log('listen on port ' + port)

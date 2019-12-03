@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/app.js",
+    "start": "NODE_ENV=production node app/app.js",
+    "dev": "node app/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
