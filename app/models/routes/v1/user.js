@@ -3,7 +3,6 @@ const router = express.Router()
 const UserModel = require('../../userModel.js')
 
 router.post('/',function(req,res){
-
     const User = new UserModel()
 
     User.name = req.body.name
@@ -24,5 +23,36 @@ router.get('/', function (req, res) {
             res.json(users)
         })
 })
+
+router.get('/:id', function (req, res) {
+    const Userid = req.params.id
+    UserModel
+        .findById(Userid,function (err,user) {
+            res.json(user)
+        })
+})
+
+router.put('/:id',function (req, res) {
+    const Userid = req.params.id
+
+    UserModel
+        .findById(Userid, function(err, user) {
+            if (err) {
+                res.send(err)
+            } else {
+
+                user.name = req.body.name
+
+                user.save(function(err) {
+                    if (err){
+                        res.send(err)
+                    } else {
+                        res.json({ message: 'Success!' })
+                    }
+                })
+            }
+        })
+})
+
 
 module.exports = router
