@@ -1,8 +1,8 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var moment = require('moment')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const moment = require('moment')
 
-var TodoSchema = new Schema({
+const TodoSchema = new Schema({
     title :String,
     text: String,
     date: String

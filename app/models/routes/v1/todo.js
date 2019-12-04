@@ -1,9 +1,18 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const TodoModel = require('../../todoModel.js')
 
 router.get('/test', function (req, res) {
     res.json({
         message:"This is todo api"
+    })
+})
+
+router.delete('/:id',function(req,res){
+    const Todoid = req.params.id
+    TodoModel.remove({_id: Todoid})
+        .then(function(){
+        res.json({message:'Success!!'})
     })
 })
 
