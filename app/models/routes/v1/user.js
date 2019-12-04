@@ -5,7 +5,9 @@ const UserModel = require('../../userModel.js')
 router.post('/',function(req,res){
     const User = new UserModel()
 
+    User.uuid = req.body.uuid
     User.name = req.body.name
+    User.setCreatedAt()
 
     User.save(function(err) {
         if (err){

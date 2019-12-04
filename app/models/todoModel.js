@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 const moment = require('moment')
 
 const TodoSchema = new Schema({
-    title :String,
-    text: String,
+    title: String,
+    is_done: Boolean,
     date: String
 })
 

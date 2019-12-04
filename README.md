@@ -9,3 +9,7 @@ npm install
 
 sudo mongod --dbpath /data/db/
 npm run dev
+
+# api
+
+curl http://localhost:8000/api/v1/user/

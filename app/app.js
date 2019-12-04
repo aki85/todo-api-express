@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 mongoose.Promise = global.Promise
 if (process.env.NODE_ENV == 'production') {
@@ -17,7 +18,7 @@ mongoose.connection.on('error', function(err) {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 8000
 
 const router = require('./models/routes/v1/')
 app.use('/api/v1/', router)
