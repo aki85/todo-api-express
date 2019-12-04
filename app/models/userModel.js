@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     created_at: String
 })
 
-UserSchema.methods.setCreatedAt = function () {
+UserSchema.methods.setDate = function () {
     this.created_at = utils.getNowText()
 }
 
