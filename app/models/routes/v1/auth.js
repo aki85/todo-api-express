@@ -55,10 +55,11 @@ const jwtFilter = function(req, res, next) {
         }
 
         req.authedUser = {
+            _id: authedUser._id,
             name: authedUser.name,
             created_at: authedUser.created_at
         }
-
+        
         next()
     })
 }

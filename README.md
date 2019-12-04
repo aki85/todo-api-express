@@ -12,4 +12,11 @@ npm run dev
 
 # api
 
-curl http://localhost:8000/api/v1/user/
+### not authed
+
+user c  
+auth c  
+
+### authed
+
+todo crud

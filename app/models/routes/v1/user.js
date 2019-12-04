@@ -7,7 +7,9 @@ router.post('/',function(req,res){
 
     User.uuid = req.body.uuid
     User.name = req.body.name
-    User.setCreatedAt()
+    User.email = req.body.email
+    User.password = req.body.password
+    User.setDate()
 
     User.save(function(err) {
         if (err){
@@ -18,43 +20,43 @@ router.post('/',function(req,res){
     })
 })
 
-router.get('/', function (req, res) {
-    UserModel
-        .find()
-        .then(function (users) {
-            res.json(users)
-        })
-})
+// router.get('/', function (req, res) {
+//     UserModel
+//         .find()
+//         .then(function (users) {
+//             res.json(users)
+//         })
+// })
 
-router.get('/:id', function (req, res) {
-    const Userid = req.params.id
-    UserModel
-        .findById(Userid,function (err,user) {
-            res.json(user)
-        })
-})
+// router.get('/:id', function (req, res) {
+//     const Userid = req.params.id
+//     UserModel
+//         .findById(Userid,function (err,user) {
+//             res.json(user)
+//         })
+// })
 
-router.put('/:id',function (req, res) {
-    const Userid = req.params.id
+// router.put('/:id',function (req, res) {
+//     const Userid = req.params.id
 
-    UserModel
-        .findById(Userid, function(err, user) {
-            if (err) {
-                res.send(err)
-            } else {
+//     UserModel
+//         .findById(Userid, function(err, user) {
+//             if (err) {
+//                 res.send(err)
+//             } else {
 
-                user.name = req.body.name
+//                 user.name = req.body.name
 
-                user.save(function(err) {
-                    if (err){
-                        res.send(err)
-                    } else {
-                        res.json({ message: 'Success!' })
-                    }
-                })
-            }
-        })
-})
+//                 user.save(function(err) {
+//                     if (err){
+//                         res.send(err)
+//                     } else {
+//                         res.json({ message: 'Success!' })
+//                     }
+//                 })
+//             }
+//         })
+// })
 
 
 module.exports = router
