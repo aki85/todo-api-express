@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
 })
 
 const jwtFilter = function(req, res, next) {
-    const token = req.body.token || req.query.token || req.headers['jwt']
+    const token = req.body.token || req.query.token || req.headers['Authorization']
 
     console.log('jwtFilter', token, req.headers)
     if (!token) {
