@@ -15,7 +15,11 @@ router.post('/', function(req, res){
         if (err){
             res.send(err)
         } else {
-            res.json({ message: 'Success!!' })
+            TodoModel
+                .find({created_by: req.authedUser._id})
+                .then(function (todos) {
+                    res.json(todos)
+                })
         }
     })
 })
@@ -60,7 +64,11 @@ router.put('/:id', function (req, res) {
                         if (err){
                             res.send(err)
                         } else {
-                            res.json({ message: 'Success!' })
+                            TodoModel
+                                .find({created_by: req.authedUser._id})
+                                .then(function (todos) {
+                                    res.json(todos)
+                                })
                         }
                     })
                 } else {
@@ -80,9 +88,12 @@ router.delete('/:id', function(req, res){
             if (todo.created_by == req.authedUser._id) {
                 TodoModel.remove({_id: Todoid})
                     .then(function(){
-                        res.json({message:'Success!!'}
-                    )
-                })
+                        TodoModel
+                            .find({created_by: req.authedUser._id})
+                            .then(function (todos) {
+                                res.json(todos)
+                            })
+                    })
             } else {
                 res.status(403).send({
                     success: false,
