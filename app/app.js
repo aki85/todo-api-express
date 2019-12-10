@@ -15,8 +15,8 @@ mongoose.connection.on('error', function(err) {
 })
 
 app.use(function(req, res, next) {
-    console.log('nandeeeee', req)
     res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "*")
     res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type")
     next()
 })
